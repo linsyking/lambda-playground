@@ -13,7 +13,8 @@
 		<div style="white-space:pre-wrap;background-color:rgb(30,30,30);color:#aaaaaa;display:flex;flex-direction: row;flex-wrap: nowrap;">
 			<div style="display:flex; flex:1; height: 600px;flex-direction: column;">
 				<div style="white-space:pre-wrap;padding-left:62px;font-size:12px;">const ch = n => x => f => Array(n).fill(f).reduce((v, f) => f(v), x)
-const ret = n => n(0)(x => x + 1);</div>
+const toInt = n => n(0)(x => x + 1);
+const toBool = m => (m(true)(false));</div>
 				<div id="container" style="flex:1;border: 1px solid grey"></div>
 
 			</div>
@@ -35,7 +36,8 @@ const ret = n => n(0)(x => x + 1);</div>
 			getContent();
 			function run(){
 				const ch = n => x => f => Array(n).fill(f).reduce((v, f) => f(v), x)
-				const ret = n => n(0)(x => x + 1);
+				const toInt = n => n(0)(x => x + 1);
+				const toBool = m => (m(true)(false));
 				let r = eval(editor.getValue());
 				document.getElementById('result').innerHTML = r;
 				console.log(r);
