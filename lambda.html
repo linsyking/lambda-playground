@@ -122,7 +122,7 @@ const ret = n => n(0)(x => x + 1);</div>
 							Statement(node){
 								return node.childNodes.length === 2 ? 
 									translate(node.childNodes[1]) :
-									`Let ${translate(node.childNodes[3])} = ${translate(node.childNodes[1])}`
+									`define ${translate(node.childNodes[3])} = ${translate(node.childNodes[1])}`
 							},
 							Expression(node, useBrackets){
 								//console.log(node);
