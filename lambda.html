@@ -9,11 +9,11 @@
 		/>
 	</head>
 	<body>
-		<h2>JavaScript to Lambda Compiler</h2>
+		<h2>JavaScript to Lambda Compiler <button onclick="run();">run</button>Result:<span id="result"></span></h2>
 		<div style="white-space:pre-wrap;background-color:rgb(30,30,30);color:#aaaaaa;display:flex;flex-direction: row;flex-wrap: nowrap;">
 			<div style="display:flex; flex:1; height: 600px;flex-direction: column;">
-				<div style="white-space:pre-wrap;padding-left:62px;font-size:12px;">const church = n => f => x => Array(n).fill(f).reduce((v, f) => f(v), x)
-const toInt = n => n(x => x + 1)(0);</div>
+				<div style="white-space:pre-wrap;padding-left:62px;font-size:12px;">const ch = n => x => f => Array(n).fill(f).reduce((v, f) => f(v), x)
+const ret = n => n(0)(x => x + 1);</div>
 				<div id="container" style="flex:1;border: 1px solid grey"></div>
 
 			</div>
@@ -21,7 +21,7 @@ const toInt = n => n(x => x + 1)(0);</div>
 			<div id="lambda" style="overflow-y:scroll;color:#ffffff;white-space:pre-wrap;flex:1; height: 600px; border: 1px solid grey">λx.x</div>
 	
 		</div>
-		<button onclick="run();">run</button>
+
 		<script>
 			var require = { paths: { vs: './monaco-editor/min/vs' } };
 		</script>
@@ -34,9 +34,10 @@ const toInt = n => n(x => x + 1)(0);</div>
 			var editor;
 			getContent();
 			function run(){
-				const church = n => f => x => Array(n).fill(f).reduce((v, f) => f(v), x)
-				const toInt = n => n(x => x + 1)(0);
+				const ch = n => x => f => Array(n).fill(f).reduce((v, f) => f(v), x)
+				const ret = n => n(0)(x => x + 1);
 				let r = eval(editor.getValue());
+				document.getElementById('result').innerHTML = r;
 				console.log(r);
 			}
 			async function getContent() {
@@ -121,7 +122,7 @@ const toInt = n => n(x => x + 1)(0);</div>
 							Statement(node){
 								return node.childNodes.length === 2 ? 
 									translate(node.childNodes[1]) :
-									`令 ${translate(node.childNodes[3])} = ${translate(node.childNodes[1])}`
+									`Let ${translate(node.childNodes[3])} = ${translate(node.childNodes[1])}`
 							},
 							Expression(node, useBrackets){
 								//console.log(node);
